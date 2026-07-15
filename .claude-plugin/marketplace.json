@@ -1,11 +1,11 @@
 {
-  "name": "brevity-skills",
+  "name": "brevity",
   "owner": {
     "name": "louixs"
   },
   "plugins": [
     {
-      "name": "brev",
+      "name": "brevity",
       "source": "."
     }
   ]
