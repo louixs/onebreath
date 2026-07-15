@@ -3,9 +3,10 @@
   "description": "Claude Code slash commands that constrain response length/format: /1s (one sentence) and /1p (one paragraph).",
   "version": "0.1.0",
   "author": {
-    "name": "10yx"
+    "name": "louixs (10yx)",
+    "url": "https://github.com/louixs"
   },
-  "homepage": "https://github.com/louixs/brevity-skills",
+  "homepage": "https://10yx.co",
   "repository": "https://github.com/louixs/brevity-skills",
   "license": "MIT"
 }
