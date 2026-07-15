@@ -1,0 +1,5 @@
+{
+  "name": "brevity-skills",
+  "description": "Claude Code slash commands that constrain response length/format: /1s (one sentence) and /1p (one paragraph).",
+  "version": "0.1.0"
+}
