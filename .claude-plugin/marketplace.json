@@ -1,0 +1,12 @@
+{
+  "name": "brevity-skills",
+  "owner": {
+    "name": "louixs"
+  },
+  "plugins": [
+    {
+      "name": "brevity-skills",
+      "source": "."
+    }
+  ]
+}
