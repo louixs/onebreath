@@ -5,7 +5,7 @@
   },
   "plugins": [
     {
-      "name": "brevity-skills",
+      "name": "brev",
       "source": "."
     }
   ]
