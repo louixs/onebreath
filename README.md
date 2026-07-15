@@ -1,37 +1,55 @@
 # brevity-skills
 
-A small pack of Claude Code slash commands that constrain response length and format.
+A Claude Code plugin (`brev`) that adds slash commands to constrain response length and format: one sentence, or one paragraph.
 
 ## Commands
 
-- `/1s <question>` — answer in exactly one sentence (at most two if truly necessary). No preamble, no headers, no bullet points, no offer to elaborate.
-- `/1p <question>` — answer in exactly one paragraph (roughly 3-6 sentences of continuous prose). No headers, no lists, no separate sections, no preamble, no offer to elaborate.
+> **Note:** Claude Code namespaces every plugin skill under the plugin's name. The commands are `/brev:1s` and `/brev:1p` — a bare `/1s` or `/1p` will not work once this is installed as a plugin.
 
-Both constraints are scoped to apply only to the single response immediately following the command invocation — they do not carry over to later turns in the same conversation.
+- `/brev:1s <question>` — answer in exactly one sentence (at most two if the answer truly cannot be compressed further without becoming hollow or misleading). The sentence is a hard constraint, not a target to fill: fit the single most important, substantive claim into it, don't pad or hedge to reach length. No preamble, no headers, no bullet points, no offer to elaborate.
+- `/brev:1p <question>` — answer in exactly one paragraph of continuous prose. The paragraph is a hard constraint, not a sentence-count target: use as few or as many sentences as the real content needs, capped at one paragraph. No headers, no bullet points, no numbered lists, no separate sections, no preamble, no offer to elaborate.
 
-## Install
+Both constraints apply **only to the single response immediately following the command invocation.** They do not carry over to later turns — once Claude has answered, it returns to normal response length and formatting unless the command is invoked again.
 
-Copy or symlink the command files into your commands directory:
+## Install (recommended)
+
+Install via Claude Code's plugin marketplace feature. Run these as slash commands inside Claude Code:
+
+```
+/plugin marketplace add louixs/brevity-skills
+/plugin install brev@brevity-skills
+/reload-plugins
+```
+
+(`louixs/brevity-skills` is the GitHub `owner/repo` shorthand that `/plugin marketplace add` accepts directly for GitHub-hosted marketplaces; `brevity-skills` is the marketplace name declared in `.claude-plugin/marketplace.json`, and `brev` is the plugin name inside it.)
+
+### Usage
+
+```
+/brev:1s What year did the Berlin Wall fall?
+/brev:1p Summarize the tradeoffs between REST and GraphQL.
+```
+
+## Optional: shorter aliases via symlink
+
+This is an optional, power-user shortcut — not the primary install path above.
+
+Because plugin skills are namespaced (`/brev:1s`, not `/1s`), the only way to get a bare `/1s`/`/1p` invocation is to bypass the plugin system and register the skill files directly as personal (non-plugin) commands. Symlink them into your own commands directory:
 
 ```sh
 # Global (all projects)
-ln -s "$(pwd)/commands/1s.md" ~/.claude/commands/1s.md
-ln -s "$(pwd)/commands/1p.md" ~/.claude/commands/1p.md
+ln -s "$(pwd)/skills/1s/SKILL.md" ~/.claude/commands/1s.md
+ln -s "$(pwd)/skills/1p/SKILL.md" ~/.claude/commands/1p.md
 
 # Project-local
-ln -s "$(pwd)/commands/1s.md" /path/to/project/.claude/commands/1s.md
-ln -s "$(pwd)/commands/1p.md" /path/to/project/.claude/commands/1p.md
+ln -s "$(pwd)/skills/1s/SKILL.md" /path/to/project/.claude/commands/1s.md
+ln -s "$(pwd)/skills/1p/SKILL.md" /path/to/project/.claude/commands/1p.md
 ```
 
-Or simply copy `commands/1s.md` and `commands/1p.md` into either location instead of symlinking.
+This requires a local clone of this repo (rather than installing through `/plugin`) since the symlink targets point at files inside the clone. Because it's a symlink rather than a copy, running `git pull` in the clone updates the content both commands see — you keep getting upstream changes, you just skip the plugin marketplace's version tracking and `/reload-plugins` mechanics. You lose: plugin-manager visibility, marketplace-driven update notifications, and the `/brev:` namespace (so it can collide with any other command literally named `1s` or `1p`).
 
-## Usage examples
+## License
 
-```
-/1s What year did the Berlin Wall fall?
-/1p Summarize the tradeoffs between REST and GraphQL.
-```
+MIT — see [LICENSE](LICENSE). Copyright (c) 2026 10yx.
 
-## Plugin manifest
-
-This repo includes a minimal `.claude-plugin/plugin.json` for eventual publication to a Claude Code plugin marketplace. TODO: validate this manifest against the official Claude Code plugin schema/docs before publishing — only `name`, `description`, and `version` were included based on best-effort knowledge, and the schema may require or support additional fields.
+Author: louixs (10yx) — https://10yx.co
