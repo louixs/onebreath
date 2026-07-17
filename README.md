@@ -26,9 +26,11 @@ Install via Claude Code's plugin marketplace feature. Run these as slash command
 ### Usage
 
 ```
-/brevity:1s What year did the Berlin Wall fall?
-/brevity:1p Summarize the tradeoffs between REST and GraphQL.
+/brevity:1s Should I bump the model to Opus or Fable for this?
+/brevity:1p This repo has no LICENSE file — GitHub defaults to all-rights-reserved, so nobody can legally fork or redistribute it. Which license should I use, given I'm open-sourcing this partly to build credibility for my company?
 ```
+
+These are pulled from real sessions: a quick decision mid-task that doesn't need a full explanation, and a one-off question that deserves real reasoning but not a multi-section writeup.
 
 ## Optional: shorter aliases via symlink
 
