@@ -25,12 +25,29 @@ Install via Claude Code's plugin marketplace feature. Run these as slash command
 
 ### Usage
 
-```
-/brevity:1s Should I bump the model to Opus or Fable for this?
-/brevity:1p This repo has no LICENSE file — GitHub defaults to all-rights-reserved, so nobody can legally fork or redistribute it. Which license should I use, given I'm open-sourcing this partly to build credibility for my company?
-```
+These are real question/answer pairs pulled from actual sessions — not invented examples.
 
-These are pulled from real sessions: a quick decision mid-task that doesn't need a full explanation, and a one-off question that deserves real reasoning but not a multi-section writeup.
+#### `/brevity:1s`
+
+For a quick decision or clarification mid-task, where you want the answer, not a discussion.
+
+> **Ask:** Should I bump model to Opus or Fable for this?
+>
+> **Response:** No — it's mechanical shell edits (df check, log rotation, staleness alert), so sonnet handles it fine.
+
+> **Ask:** Can you help me with one query I can run to research whether any similar command exists?
+>
+> **Response:** Search GitHub and the Claude Code plugin/skill marketplaces for `"claude code" (slash command OR skill OR plugin) "one sentence" answer length` to see if a terse/one-sentence response constraint already exists as a shared command.
+
+#### `/brevity:1p`
+
+For a question that deserves real reasoning, capped at one paragraph instead of a multi-section writeup.
+
+> **Ask:** Now we are about to make this repo ready for release. No LICENSE file — GitHub defaults to "all rights reserved," which defeats the point of open-sourcing. Which license would you recommend? Note this is engineering-as-marketing to promote our company too — I'll be linking subtly to it, hoping it drives traffic and builds credibility.
+>
+> **Response:** MIT is the right call here: it's the most recognized permissive license, imposes zero friction on forking, modifying, or embedding into commercial products, and that recognizability itself does marketing work — developers scanning GitHub trust MIT repos instantly and won't hesitate before starring, forking, or mentioning it, which is exactly the low-friction virality you want when the real goal is audience-building rather than protecting IP in two slash-command files that have no defensible moat anyway; the only reason to reach for something else (Apache 2.0) would be if you cared about explicit patent-grant language or wanted a NOTICE file mechanism to force attribution to propagate through forks, but for a marketing-driven micro-tool that added ceremony just suppresses adoption without buying you anything, and copyleft options (GPL/AGPL) are actively counterproductive here since they'd scare off exactly the corporate/professional users you want citing and reusing this to build your credibility.
+
+**`/1p` is still experimental.** Fitting real substance into one paragraph, as above, means long, densely clause-packed sentences — readable, but noticeably harder to skim than normal prose. On harder questions it can produce output that's technically one paragraph but pushes well past what "one paragraph" should mean in practice. If the answer needs real structure (multiple options, sequenced steps), let Claude say so and drop the constraint rather than forcing it.
 
 ## Optional: shorter aliases via symlink
 
