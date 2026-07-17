@@ -1,11 +1,11 @@
 {
-  "name": "brevity",
+  "name": "onebreath",
   "owner": {
     "name": "louixs"
   },
   "plugins": [
     {
-      "name": "brevity",
+      "name": "onebreath",
       "source": "."
     }
   ]

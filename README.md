@@ -1,13 +1,13 @@
-# brevity
+# onebreath
 
-A Claude Code plugin (`brevity`) that adds slash commands to constrain response length and format: one sentence, or one paragraph.
+A Claude Code plugin (`onebreath`) that adds slash commands to constrain response length and format: one sentence, or one paragraph.
 
 ## Commands
 
-> **Note:** Claude Code namespaces every plugin skill under the plugin's name. The commands are `/brevity:1s` and `/brevity:1p` — a bare `/1s` or `/1p` will not work once this is installed as a plugin.
+> **Note:** Claude Code namespaces every plugin skill under the plugin's name. The commands are `/onebreath:1s` and `/onebreath:1p` — a bare `/1s` or `/1p` will not work once this is installed as a plugin. (Claude Code has a known bug — [#50486](https://github.com/anthropics/claude-code/issues/50486) — where some plugin commands surface unprefixed in autocomplete; that's not something this plugin controls or guarantees, so always use the namespaced form.)
 
-- `/brevity:1s <question>` — answer in exactly one sentence (at most two if the answer truly cannot be compressed further without becoming hollow or misleading). The sentence is a hard constraint, not a target to fill: fit the single most important, substantive claim into it, don't pad or hedge to reach length. No preamble, no headers, no bullet points, no offer to elaborate.
-- `/brevity:1p <question>` — answer in exactly one paragraph of continuous prose. The paragraph is a hard constraint, not a sentence-count target: use as few or as many sentences as the real content needs, capped at one paragraph. No headers, no bullet points, no numbered lists, no separate sections, no preamble, no offer to elaborate.
+- `/onebreath:1s <question>` — answer in exactly one sentence (at most two if the answer truly cannot be compressed further without becoming hollow or misleading). The sentence is a hard constraint, not a target to fill: fit the single most important, substantive claim into it, don't pad or hedge to reach length. No preamble, no headers, no bullet points, no offer to elaborate.
+- `/onebreath:1p <question>` — answer in exactly one paragraph of continuous prose. The paragraph is a hard constraint, not a sentence-count target: use as few or as many sentences as the real content needs, capped at one paragraph. No headers, no bullet points, no numbered lists, no separate sections, no preamble, no offer to elaborate.
 
 Both constraints apply **only to the single response immediately following the command invocation.** They do not carry over to later turns — once Claude has answered, it returns to normal response length and formatting unless the command is invoked again.
 
@@ -16,18 +16,18 @@ Both constraints apply **only to the single response immediately following the c
 Install via Claude Code's plugin marketplace feature. Run these as slash commands inside Claude Code:
 
 ```
-/plugin marketplace add louixs/brevity
-/plugin install brevity@brevity
+/plugin marketplace add louixs/onebreath
+/plugin install onebreath@onebreath
 /reload-plugins
 ```
 
-(`louixs/brevity` is the GitHub `owner/repo` shorthand that `/plugin marketplace add` accepts directly for GitHub-hosted marketplaces; `brevity` is both the marketplace name declared in `.claude-plugin/marketplace.json` and the plugin name inside it.)
+(`louixs/onebreath` is the GitHub `owner/repo` shorthand that `/plugin marketplace add` accepts directly for GitHub-hosted marketplaces; `onebreath` is both the marketplace name declared in `.claude-plugin/marketplace.json` and the plugin name inside it.)
 
 ### Usage
 
 These are real question/answer pairs pulled from actual sessions — not invented examples.
 
-#### `/brevity:1s`
+#### `/onebreath:1s`
 
 For a quick decision or clarification mid-task, where you want the answer, not a discussion.
 
@@ -39,7 +39,7 @@ For a quick decision or clarification mid-task, where you want the answer, not a
 >
 > **Response:** Search GitHub and the Claude Code plugin/skill marketplaces for `"claude code" (slash command OR skill OR plugin) "one sentence" answer length` to see if a terse/one-sentence response constraint already exists as a shared command.
 
-#### `/brevity:1p`
+#### `/onebreath:1p`
 
 For a question that deserves real reasoning, capped at one paragraph instead of a multi-section writeup.
 
