@@ -11,7 +11,7 @@ A Claude Code plugin (`brevity`) that adds slash commands to constrain response 
 
 Both constraints apply **only to the single response immediately following the command invocation.** They do not carry over to later turns — once Claude has answered, it returns to normal response length and formatting unless the command is invoked again.
 
-## Install (recommended)
+## Install
 
 Install via Claude Code's plugin marketplace feature. Run these as slash commands inside Claude Code:
 
@@ -43,29 +43,9 @@ For a quick decision or clarification mid-task, where you want the answer, not a
 
 For a question that deserves real reasoning, capped at one paragraph instead of a multi-section writeup.
 
-> **Ask:** Now we are about to make this repo ready for release. No LICENSE file — GitHub defaults to "all rights reserved," which defeats the point of open-sourcing. Which license would you recommend? Note this is engineering-as-marketing to promote our company too — I'll be linking subtly to it, hoping it drives traffic and builds credibility.
+> **Ask:** No LICENSE file on this repo. Which one should I use, and why?
 >
-> **Response:** MIT is the right call here: it's the most recognized permissive license, imposes zero friction on forking, modifying, or embedding into commercial products, and that recognizability itself does marketing work — developers scanning GitHub trust MIT repos instantly and won't hesitate before starring, forking, or mentioning it, which is exactly the low-friction virality you want when the real goal is audience-building rather than protecting IP in two slash-command files that have no defensible moat anyway; the only reason to reach for something else (Apache 2.0) would be if you cared about explicit patent-grant language or wanted a NOTICE file mechanism to force attribution to propagate through forks, but for a marketing-driven micro-tool that added ceremony just suppresses adoption without buying you anything, and copyleft options (GPL/AGPL) are actively counterproductive here since they'd scare off exactly the corporate/professional users you want citing and reusing this to build your credibility.
-
-**`/1p` is still experimental.** Fitting real substance into one paragraph, as above, means long, densely clause-packed sentences — readable, but noticeably harder to skim than normal prose. On harder questions it can produce output that's technically one paragraph but pushes well past what "one paragraph" should mean in practice. If the answer needs real structure (multiple options, sequenced steps), let Claude say so and drop the constraint rather than forcing it.
-
-## Optional: shorter aliases via symlink
-
-This is an optional, power-user shortcut — not the primary install path above.
-
-Because plugin skills are namespaced (`/brevity:1s`, not `/1s`), the only way to get a bare `/1s`/`/1p` invocation is to bypass the plugin system and register the skill files directly as personal (non-plugin) commands. Symlink them into your own commands directory:
-
-```sh
-# Global (all projects)
-ln -s "$(pwd)/skills/1s/SKILL.md" ~/.claude/commands/1s.md
-ln -s "$(pwd)/skills/1p/SKILL.md" ~/.claude/commands/1p.md
-
-# Project-local
-ln -s "$(pwd)/skills/1s/SKILL.md" /path/to/project/.claude/commands/1s.md
-ln -s "$(pwd)/skills/1p/SKILL.md" /path/to/project/.claude/commands/1p.md
-```
-
-This requires a local clone of this repo (rather than installing through `/plugin`) since the symlink targets point at files inside the clone. Because it's a symlink rather than a copy, running `git pull` in the clone updates the content both commands see — you keep getting upstream changes, you just skip the plugin marketplace's version tracking and `/reload-plugins` mechanics. You lose: plugin-manager visibility, marketplace-driven update notifications, and the `/brevity:` namespace (so it can collide with any other command literally named `1s` or `1p`).
+> **Response:** MIT is the right call for a small open-source tool like this. It's the most recognized permissive license, so people trust it instantly and won't hesitate to fork or reuse it. Apache 2.0 only makes sense if you specifically want explicit patent-grant language or a NOTICE file to propagate attribution through forks, which is overkill here. Copyleft options like GPL would just add friction without protecting anything worth protecting in a repo this small.
 
 ## License
 
