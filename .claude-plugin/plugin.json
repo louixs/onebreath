@@ -1,6 +1,6 @@
 {
   "name": "onebreath",
-  "description": "Claude Code slash commands that constrain response length/format: /1s (one sentence) and /1p (one paragraph).",
+  "description": "Claude Code slash commands that constrain response length/format: /onebreath:1s (one sentence) and /onebreath:1p (one paragraph).",
   "version": "0.1.0",
   "author": {
     "name": "louixs (10yx)",
