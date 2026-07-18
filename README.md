@@ -13,6 +13,8 @@ Both constraints apply **only to the single response immediately following the c
 
 ## Install
 
+### Option 1: Plugin marketplace
+
 Install via Claude Code's plugin marketplace feature. Run these as slash commands inside Claude Code:
 
 ```
@@ -22,6 +24,16 @@ Install via Claude Code's plugin marketplace feature. Run these as slash command
 ```
 
 (`louixs/onebreath` is the GitHub `owner/repo` shorthand that `/plugin marketplace add` accepts directly for GitHub-hosted marketplaces; `onebreath` is both the marketplace name declared in `.claude-plugin/marketplace.json` and the plugin name inside it.)
+
+### Option 2: npx
+
+Install the skills directly via npm, no marketplace required:
+
+```
+npx onebreath
+```
+
+This prompts you to choose between installing to the current project's `.claude/skills` or your global `~/.claude/skills`. Non-interactive flags are available for scripting: `--project`/`-p`, `--global`/`-g`, and `--yes`/`-y` (skips prompts, defaults to `--project` if no target flag is given). Skills installed this way are used as `/1s` and `/1p` (not namespaced under a plugin name, unlike the marketplace install).
 
 ### Usage
 
