@@ -1,4 +1,5 @@
 ---
+name: 1p
 description: Answer in exactly one paragraph, no preamble, no follow-up offer
 ---
 

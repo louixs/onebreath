@@ -1,4 +1,5 @@
 ---
+name: 1s
 description: Answer in exactly one sentence, no preamble, no follow-up offer
 ---
 
