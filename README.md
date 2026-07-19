@@ -2,14 +2,23 @@
 
 A Claude Code plugin (`onebreath`) that adds slash commands to constrain response length and format: one sentence, or one paragraph.
 
-## Commands
+| Without `onebreath` | With `/onebreath:1s` |
+|---|---|
+| ![Verbose, hedgy Claude answer](demo/before.gif) | ![Same question, one sentence](demo/after.gif) |
 
-> **Note:** Claude Code namespaces every plugin skill under the plugin's name. The commands are `/onebreath:1s` and `/onebreath:1p` — a bare `/1s` or `/1p` will not work once this is installed as a plugin. (Claude Code has a known bug — [#50486](https://github.com/anthropics/claude-code/issues/50486) — where some plugin commands surface unprefixed in autocomplete; that's not something this plugin controls or guarantees, so always use the namespaced form.)
+## Commands
 
 - `/onebreath:1s <question>` — answer in exactly one sentence (at most two if the answer truly cannot be compressed further without becoming hollow or misleading). The sentence is a hard constraint, not a target to fill: fit the single most important, substantive claim into it, don't pad or hedge to reach length. No preamble, no headers, no bullet points, no offer to elaborate.
 - `/onebreath:1p <question>` — answer in exactly one paragraph of continuous prose. The paragraph is a hard constraint, not a sentence-count target: use as few or as many sentences as the real content needs, capped at one paragraph. No headers, no bullet points, no numbered lists, no separate sections, no preamble, no offer to elaborate.
 
 Both constraints apply **only to the single response immediately following the command invocation.** They do not carry over to later turns — once Claude has answered, it returns to normal response length and formatting unless the command is invoked again.
+
+<details>
+<summary>Known issue: unprefixed commands in autocomplete</summary>
+
+Claude Code namespaces every plugin skill under the plugin's name. The commands are `/onebreath:1s` and `/onebreath:1p` — a bare `/1s` or `/1p` will not work once this is installed as a plugin. (Claude Code has a known bug — [#50486](https://github.com/anthropics/claude-code/issues/50486) — where some plugin commands surface unprefixed in autocomplete; that's not something this plugin controls or guarantees, so always use the namespaced form.)
+
+</details>
 
 ## Install
 
@@ -22,8 +31,6 @@ Install via Claude Code's plugin marketplace feature. Run these as slash command
 /plugin install onebreath@onebreath
 /reload-plugins
 ```
-
-(`louixs/onebreath` is the GitHub `owner/repo` shorthand that `/plugin marketplace add` accepts directly for GitHub-hosted marketplaces; `onebreath` is both the marketplace name declared in `.claude-plugin/marketplace.json` and the plugin name inside it.)
 
 ### Option 2: npx
 
@@ -57,7 +64,7 @@ For a question that deserves real reasoning, capped at one paragraph instead of 
 
 > **Ask:** No LICENSE file on this repo. Which one should I use, and why?
 >
-> **Response:** MIT is the right call for a small open-source tool like this. It's the most recognized permissive license, so people trust it instantly and won't hesitate to fork or reuse it. Apache 2.0 only makes sense if you specifically want explicit patent-grant language or a NOTICE file to propagate attribution through forks, which is overkill here. Copyleft options like GPL would just add friction without protecting anything worth protecting in a repo this small.
+> **Response:** MIT is the right call for a small open-source tool like this — it's the most recognized permissive license, so people trust it instantly and won't hesitate to fork or reuse it, while Apache 2.0's patent-grant language and GPL's copyleft would just add friction without protecting anything worth protecting here.
 
 ## License
 
